@@ -29,9 +29,7 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif; /* Será reemplazado por Next.js fonts */
-}
-
-@utility glass {
+.glass {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -39,7 +37,7 @@ body {
   box-shadow: 0 8px 32px rgba(10, 25, 47, 0.05);
 }
 
-@utility glass-dark {
+.glass-dark {
   background: rgba(10, 25, 47, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -47,22 +45,22 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-@utility glass-gold {
+.glass-gold {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(245, 158, 11, 0.05));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-@utility premium-shadow {
+.premium-shadow {
   box-shadow: 0 20px 40px -10px rgba(10, 25, 47, 0.08), 0 10px 20px -5px rgba(10, 25, 47, 0.04);
 }
 
-@utility premium-shadow-hover {
+.premium-shadow-hover:hover {
   box-shadow: 0 30px 60px -12px rgba(10, 25, 47, 0.12), 0 18px 36px -18px rgba(10, 25, 47, 0.08);
 }
 
-@utility text-gradient-gold {
+.text-gradient-gold {
   background: linear-gradient(to right, var(--color-rp-gold), var(--color-rp-amber));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
