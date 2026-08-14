@@ -17,14 +17,14 @@ export default function Home() {
           
           <div className="relative z-20 container mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 max-w-3xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rp-gold/20 text-rp-gold border border-rp-gold/30 text-sm font-semibold tracking-wide backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-gold text-rp-gold font-bold text-sm tracking-wide mb-2">
                 <span className="w-2 h-2 rounded-full bg-rp-gold animate-pulse" />
                 Matrícula Abierta 2026
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold font-serif leading-tight">
                 I.E. Pública <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rp-gold to-rp-amber">
+                <span className="text-gradient-gold">
                   Ricardo Palma Soriano
                 </span>
               </h1>
@@ -36,7 +36,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                 <Link 
                   href="/matricula" 
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-rp-gold text-rp-navy font-semibold rounded-lg hover:bg-rp-amber transition-colors shadow-lg hover:shadow-rp-gold/20"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-rp-gold text-rp-navy font-bold rounded-xl hover:bg-rp-amber hover:-translate-y-1 transition-all premium-shadow-hover"
                 >
                   Requisitos de Matrícula
                   <ArrowRight className="w-5 h-5" />

@@ -40,12 +40,12 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <header className={`sticky top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-md py-3" : "bg-white py-5"}`}>
+      {/* Main Navbar Premium */}
+      <header className={`sticky top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "glass shadow-md py-3" : "bg-white/95 backdrop-blur-md py-5"}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            {/* Reemplazar con el Logo Real si está disponible */}
-            <div className="w-10 h-10 bg-rp-navy rounded-full flex items-center justify-center text-white font-serif font-bold text-lg">
+          <Link href="/" className="flex items-center gap-3 group">
+            {/* Logo Premium */}
+            <div className="w-10 h-10 bg-rp-navy rounded-lg flex items-center justify-center text-white font-serif font-bold text-xl group-hover:bg-rp-gold group-hover:text-rp-navy transition-all duration-300 premium-shadow">
               RP
             </div>
             <div className="flex flex-col">
@@ -60,7 +60,7 @@ export function Navbar() {
               <Link 
                 key={link.name} 
                 href={link.href}
-                className="text-sm font-medium text-rp-navy hover:text-rp-blue flex items-center gap-1.5 transition-colors"
+                className="text-sm font-bold text-rp-navy hover:text-rp-gold flex items-center gap-1.5 transition-colors"
               >
                 {link.icon}
                 {link.name}
@@ -79,20 +79,20 @@ export function Navbar() {
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-6 flex flex-col gap-4 animate-in slide-in-from-top-2">
+          <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-lg py-4 px-6 flex flex-col gap-4 animate-in slide-in-from-top-2">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-rp-navy font-medium flex items-center gap-2 py-2 border-b border-gray-50"
+                className="text-rp-navy font-bold flex items-center gap-2 py-3 border-b border-gray-50"
               >
                 {link.icon}
                 {link.name}
               </Link>
             ))}
             <div className="pt-2 flex flex-col gap-2">
-              <Link href="/admin" className="text-sm font-bold text-rp-gold bg-rp-navy p-3 rounded-lg text-center">Acceso Intranet / Admin</Link>
+              <Link href="/admin" className="text-sm font-bold text-rp-navy bg-rp-gold p-3 rounded-lg text-center premium-shadow">Acceso Intranet / Admin</Link>
             </div>
           </div>
         )}
