@@ -165,6 +165,18 @@ export default function MatriculaPage() {
                   </div>
                 </div>
 
+                {/* Panel de Vacantes */}
+                <div className="bg-white rounded-3xl p-8 premium-shadow border border-gray-100 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-rp-navy mb-2">Disponibilidad y Límite Pedagógico</h3>
+                    <p className="text-gray-600 text-sm max-w-md">De acuerdo a la normativa de MINEDU y para asegurar la calidad educativa, admitimos un máximo estricto por aula.</p>
+                  </div>
+                  <div className="text-center bg-rp-ivory py-4 px-8 rounded-2xl border border-gray-200">
+                    <div className="text-4xl font-bold text-rp-gold mb-1">30</div>
+                    <div className="text-xs font-bold text-rp-navy uppercase tracking-widest">Alumnos<br/>por Salón</div>
+                  </div>
+                </div>
+
                 {/* Cronograma MINEDU Minimalista */}
                 <div className="glass rounded-3xl p-8 border border-gray-200">
                   <div className="flex items-center justify-between mb-6">

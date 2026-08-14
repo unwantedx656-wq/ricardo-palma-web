@@ -21,7 +21,8 @@ export function Navbar() {
     { name: "Nosotros", href: "/nosotros", icon: <Info className="w-4 h-4" /> },
     { name: "Especialidades", href: "/talleres", icon: <BookOpen className="w-4 h-4" /> },
     { name: "Matrícula", href: "/matricula", icon: <GraduationCap className="w-4 h-4" /> },
-    { name: "Noticias", href: "/noticias", icon: <Calendar className="w-4 h-4" /> },
+    { name: "Noticias", href: "/noticias", icon: <Info className="w-4 h-4" /> },
+    { name: "Eventos", href: "/eventos", icon: <Calendar className="w-4 h-4" /> },
   ];
 
   return (

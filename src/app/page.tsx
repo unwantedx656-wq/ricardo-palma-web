@@ -52,10 +52,10 @@ export default function Home() {
             
             <div className="hidden lg:flex flex-1 justify-end">
               <div className="grid grid-cols-2 gap-4">
-                <StatCard icon={<Users />} count="1,200+" label="Estudiantes Activos" />
-                <StatCard icon={<GraduationCap />} count="4" label="Talleres Técnicos" />
-                <StatCard icon={<BookOpen />} count="3" label="Niveles Educativos" />
-                <StatCard icon={<Calendar />} count="1980" label="Año de Fundación" />
+                <StatCard icon={<Users />} count="1,200+" label="Estudiantes Activos" href="/nosotros" />
+                <StatCard icon={<GraduationCap />} count="4" label="Talleres Técnicos" href="/talleres" />
+                <StatCard icon={<BookOpen />} count="3" label="Niveles Educativos" href="/matricula" />
+                <StatCard icon={<Calendar />} count="1980" label="Año de Fundación" href="/nosotros" />
               </div>
             </div>
           </div>
@@ -76,21 +76,25 @@ export default function Home() {
                 title="Industrias Alimentarias" 
                 desc="Procesamiento de café, cacao, cítricos y frutas de la región."
                 color="border-amber-500"
+                href="/talleres#industrias"
               />
               <TechnicalCard 
                 title="Computación e Informática" 
                 desc="Desarrollo de software, ofimática y ensamblaje de equipos."
                 color="border-blue-500"
+                href="/talleres#computacion"
               />
               <TechnicalCard 
                 title="Industria del Vestido" 
                 desc="Diseño, patronaje, corte y confección textil."
                 color="border-purple-500"
+                href="/talleres#vestido"
               />
               <TechnicalCard 
                 title="Agropecuaria" 
                 desc="Gestión de cultivos, cuidado ambiental y técnicas de cultivo sostenible."
                 color="border-rp-green"
+                href="/talleres#agro"
               />
             </div>
           </div>
@@ -100,9 +104,9 @@ export default function Home() {
   );
 }
 
-function StatCard({ icon, count, label }: { icon: React.ReactNode, count: string, label: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl hover:bg-white/10 transition-colors">
+function StatCard({ icon, count, label, href }: { icon: React.ReactNode, count: string, label: string, href?: string }) {
+  const content = (
+    <div className={`flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-colors ${href ? 'hover:bg-white/10 cursor-pointer' : ''}`}>
       <div className="p-3 bg-rp-gold/20 text-rp-gold rounded-xl mb-4">
         {icon}
       </div>
@@ -110,17 +114,24 @@ function StatCard({ icon, count, label }: { icon: React.ReactNode, count: string
       <div className="text-sm text-rp-ivory/60 text-center">{label}</div>
     </div>
   );
+
+  if (href) {
+    return <Link href={href} className="block">{content}</Link>;
+  }
+  return content;
 }
 
-function TechnicalCard({ title, desc, color }: { title: string, desc: string, color: string }) {
+function TechnicalCard({ title, desc, color, href }: { title: string, desc: string, color: string, href: string }) {
   return (
-    <div className={`p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border-t-4 ${color} group cursor-pointer`}>
-      <h3 className="text-xl font-bold text-rp-navy mb-3 group-hover:text-rp-blue transition-colors">{title}</h3>
-      <p className="text-rp-navy/70 mb-6 leading-relaxed">{desc}</p>
-      <div className="flex items-center text-sm font-semibold text-rp-blue group-hover:text-rp-gold transition-colors">
-        Leer más <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+    <Link href={href} className="block h-full">
+      <div className={`p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border-t-4 ${color} group cursor-pointer h-full flex flex-col`}>
+        <h3 className="text-xl font-bold text-rp-navy mb-3 group-hover:text-rp-blue transition-colors">{title}</h3>
+        <p className="text-rp-navy/70 mb-6 leading-relaxed flex-1">{desc}</p>
+        <div className="flex items-center text-sm font-semibold text-rp-blue group-hover:text-rp-gold transition-colors mt-auto">
+          Descubrir especialidad <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
