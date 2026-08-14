@@ -124,26 +124,4 @@ function TechnicalCard({ title, desc, color }: { title: string, desc: string, co
   );
 }
 
-function StatCard({ icon, count, label }: { icon: React.ReactNode, count: string, label: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl hover:bg-white/10 transition-colors">
-      <div className="p-3 bg-rp-gold/20 text-rp-gold rounded-xl mb-4">
-        {icon}
-      </div>
-      <div className="text-3xl font-bold text-white mb-1">{count}</div>
-      <div className="text-sm text-rp-ivory/60 text-center">{label}</div>
-    </div>
-  );
-}
 
-function TechnicalCard({ title, desc, color }: { title: string, desc: string, color: string }) {
-  return (
-    <div className={`p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border-t-4 ${color} group cursor-pointer`}>
-      <h3 className="text-xl font-bold text-rp-navy mb-3 group-hover:text-rp-blue transition-colors">{title}</h3>
-      <p className="text-rp-navy/70 mb-6 leading-relaxed">{desc}</p>
-      <div className="flex items-center text-sm font-semibold text-rp-blue group-hover:text-rp-gold transition-colors">
-        Leer más <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-      </div>
-    </div>
-  );
-}
