@@ -7,12 +7,26 @@ import { Menu, X, BookOpen, GraduationCap, Calendar, Phone, Info } from "lucide-
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [contacto, setContacto] = useState({ telefono: "+51 (064) 000-000", email: "tramite@rpsoriano.edu.pe" });
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
+    
+    // Cargar datos del CMS
+    import("@/lib/supabase").then(({ supabase }) => {
+      supabase.from('ajustes').select('telefono, email').eq('id', 1).single().then(({ data }) => {
+        if (data) {
+          setContacto({
+            telefono: data.telefono || "+51 (064) 000-000",
+            email: data.email || "tramite@rpsoriano.edu.pe"
+          });
+        }
+      });
+    });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -31,8 +45,8 @@ export function Navbar() {
       <div className="bg-rp-navy text-white text-xs py-2 px-6 hidden md:block">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex gap-4">
-            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +51 (064) 000-000</span>
-            <span>Mesa de Partes Virtual: tramite@rpsoriano.edu.pe</span>
+            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> {contacto.telefono}</span>
+            <span>Mesa de Partes Virtual: {contacto.email}</span>
           </div>
           <div className="flex gap-4 font-semibold">
             <Link href="/admin" className="text-rp-gold hover:text-rp-amber transition-colors">Intranet / Admin</Link>

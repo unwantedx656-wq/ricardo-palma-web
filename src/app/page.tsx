@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, Users, Calendar, GraduationCap } from "lucide-react";
 import { ClientLayout } from "@/components/layout/ClientLayout";
+import { supabase } from "@/lib/supabase";
 
-export default function Home() {
+export const revalidate = 60; // Regenerar la página cada minuto si hay cambios
+
+export default async function Home() {
+  const { data: ajustes } = await supabase.from('ajustes').select('hero_image').eq('id', 1).single();
+  const heroImageUrl = ajustes?.hero_image || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop';
+
   return (
     <ClientLayout>
       <main className="flex-1 flex flex-col">
@@ -11,8 +17,8 @@ export default function Home() {
           {/* Background Overlay Simulation */}
           <div className="absolute inset-0 bg-gradient-to-br from-rp-navy/90 to-rp-blue/80 z-10" />
           <div 
-            className="absolute inset-0 bg-cover bg-center opacity-40 z-0"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop')" }}
+            className="absolute inset-0 bg-cover bg-center opacity-40 z-0 transition-all duration-1000"
+            style={{ backgroundImage: `url('${heroImageUrl}')` }}
           />
           
           <div className="relative z-20 container mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center gap-12">
