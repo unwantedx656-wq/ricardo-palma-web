@@ -1,49 +1,29 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import { ClientLayout } from "@/components/layout/ClientLayout";
-import { Calendar as CalendarIcon, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Calendar as CalendarIcon, MapPin, Clock, ArrowRight, Loader2 } from "lucide-react";
 
 export default function EventosPage() {
-  const eventos = [
-    {
-      fecha: "15 Marzo, 2026",
-      hora: "08:00 AM - 12:00 PM",
-      titulo: "Ceremonia de Buen Inicio del Año Escolar",
-      lugar: "Patio de Honor I.E. Ricardo Palma",
-      desc: "Acto protocolar con presencia de autoridades de la UGEL Pichanaki, directivos, plana docente y padres de familia para dar inicio a las actividades académicas.",
-      tipo: "Institucional",
-    },
-    {
-      fecha: "12 Mayo, 2026",
-      hora: "09:00 AM - 01:00 PM",
-      titulo: "Feria Tecnológica EPT",
-      lugar: "Talleres y Losa Deportiva",
-      desc: "Exhibición de los proyectos técnicos de nuestros estudiantes de Secundaria en las ramas de Computación, Industrias Alimentarias, Agropecuaria e Industria del Vestido.",
-      tipo: "Académico",
-    },
-    {
-      fecha: "25 Julio, 2026",
-      hora: "08:00 AM - 02:00 PM",
-      titulo: "Desfile Cívico Escolar por Fiestas Patrias",
-      lugar: "Plaza Principal de Unión Perené",
-      desc: "Participación oficial de nuestra escolta, estado mayor y batallones en el desfile central por el aniversario patrio.",
-      tipo: "Cívico",
-    },
-    {
-      fecha: "23 Septiembre, 2026",
-      hora: "10:00 AM - 04:00 PM",
-      titulo: "Olimpiadas Palmistinas y Día de la Juventud",
-      lugar: "Estadio Municipal de Unión Perené",
-      desc: "Jornada deportiva y de integración con competencias de fulbito, vóley, atletismo y gincana para los niveles primaria y secundaria.",
-      tipo: "Deportivo",
-    },
-    {
-      fecha: "10 Noviembre, 2026",
-      hora: "Todo el día",
-      titulo: "Día del Logro",
-      lugar: "Aulas de Innovación y Patios",
-      desc: "Demostración pública de los aprendizajes alcanzados por nuestros estudiantes en todas las áreas curriculares.",
-      tipo: "Académico",
+  const [eventos, setEventos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchEventos() {
+      // Ordenamos por id o fecha, aquí por id ascendente para mantener el orden de inserción
+      const { data, error } = await supabase
+        .from('eventos')
+        .select('*')
+        .order('id', { ascending: true });
+      
+      if (!error && data) {
+        setEventos(data);
+      }
+      setLoading(false);
     }
-  ];
+    fetchEventos();
+  }, []);
 
   return (
     <ClientLayout>
@@ -65,6 +45,18 @@ export default function EventosPage() {
               Mantente informado sobre las fechas clave, actividades cívicas, académicas y deportivas de nuestra comunidad Palmistina.
             </p>
           </div>
+
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="w-10 h-10 text-rp-gold animate-spin" />
+            </div>
+          ) : eventos.length === 0 ? (
+            <div className="text-center py-20 bg-white rounded-3xl premium-shadow border border-gray-100">
+              <CalendarIcon className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-rp-navy mb-2">No hay eventos programados</h3>
+              <p className="text-gray-500">Aún no se ha publicado el cronograma oficial de actividades.</p>
+            </div>
+          ) : (
 
           <div className="relative border-l-4 border-rp-gold/30 ml-4 md:ml-8 space-y-12 pb-12">
             {eventos.map((evento, idx) => (
@@ -110,6 +102,7 @@ export default function EventosPage() {
               </div>
             ))}
           </div>
+          )}
 
           <div className="mt-16 text-center">
             <p className="text-gray-500 italic mb-4">Las fechas están sujetas a modificaciones por parte del Ministerio de Educación (MINEDU) o la UGEL Pichanaki.</p>
